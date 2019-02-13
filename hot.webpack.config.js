@@ -2,9 +2,8 @@
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const WebpackMd5Hash = require('webpack-md5-hash');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
-
+const globImporter = require('node-sass-glob-importer');
 module.exports =
 {
 	entry: { main: './src/index.js' },
@@ -14,6 +13,7 @@ module.exports =
 		filename: 'main.js',
 	},
 	target: 'web',
+	devtool: 'eval-source-map',
     module:
     {
         rules:
@@ -27,6 +27,11 @@ module.exports =
                 }
             },
             {
+        		test: /\.js$/,
+        		use: ["source-map-loader"],
+        		enforce: "pre"
+			},
+            {
                 test: /\.scss$/,
                 use:
                 [
@@ -34,7 +39,13 @@ module.exports =
                     MiniCssExtractPlugin.loader,
                     'css-loader',
                     'postcss-loader',
-                    'sass-loader',
+                    // 'sass-loader',
+					{
+						loader: 'sass-loader',
+						options: {
+							importer: globImporter()
+						}
+					}
                 ]
             },
             {
@@ -58,7 +69,5 @@ module.exports =
             template: './src/index.html',
             filename: 'index.html',
         }),
-        new WebpackMd5Hash(),
     ]
-
 }
