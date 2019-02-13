@@ -46,7 +46,6 @@ const App = () => {
 		<div className="wrapper">
 			<Nav items={nav} />
 			<main className="main">some content</main>
-			<Icon name="si-glyph-mushrooms" />
 		</div>
 	)
 }
