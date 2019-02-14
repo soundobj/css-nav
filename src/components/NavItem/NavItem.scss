@@ -1,0 +1,25 @@
+.nav {
+	&-item {
+		background-color: white;
+		&-item {
+			display: flex;
+    		height: 35px;
+    		align-items: center;
+			padding: 0 10px 0 10px;
+			&:hover {
+				background-color: #e6e6e6;
+				cursor: pointer;
+			}
+		}
+		&-icon {
+			display: inline-block;
+			padding-right: 10px;
+		}
+		&-title {
+			font-family: sans-serif;
+			color: black;
+			font-size: 10px;color: black;
+			font-size: 14px;
+		}
+	}
+}
